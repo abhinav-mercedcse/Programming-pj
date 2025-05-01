@@ -1,4 +1,5 @@
 #include "Canvas.h"
+#include "Triangle.h"
 #include <GL/freeglut.h>
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
@@ -13,6 +14,10 @@ void Canvas::addRectangle(float x, float y, float width, float height, float r, 
     rectangles.push_back(new Rectangle(x, y, width, height, r, g, b));
 }
 
+void Canvas::addTriangle(float x, float y, float width, float height, float r, float g, float b) {
+    triangles.push_back(new Triangle(x, y, width, height, r, g, b));
+}
+
 void Canvas::clear() {
     for (unsigned int i = 0 ; i < points.size(); i++) {
         delete points[i];
@@ -23,6 +28,11 @@ void Canvas::clear() {
         delete rectangles[i];
     }
     rectangles.clear();
+
+    for (unsigned int i = 0 ; i < triangles.size(); i++) {
+        delete triangles[i];
+    }
+    triangles.clear();
 }
 
 void Canvas::render() {
@@ -32,5 +42,9 @@ void Canvas::render() {
 
     for (unsigned int i = 0 ; i < rectangles.size(); i++) {
         rectangles[i]->draw();
+    }
+
+    for (unsigned int i = 0 ; i < triangles.size(); i++) {
+        triangles[i]->draw();
     }
 }
