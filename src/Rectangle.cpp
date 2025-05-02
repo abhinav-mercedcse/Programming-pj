@@ -11,11 +11,11 @@ Rectangle::Rectangle() {
     b = 0.0;
 }
 
-Rectangle::Rectangle(float x, float y, float width, float height, float r, float g, float b) {
+Rectangle::Rectangle(float x, float y, float r, float g, float b) {
     this->x = x;
     this->y = y;
-    this->width = width;
-    this->height = height;
+    width = 0.4;
+    height = 0.4;
     this->r = r;
     this->g = g;
     this->b = b;
@@ -33,5 +33,14 @@ void Rectangle::draw() {
 }
 
 bool Rectangle::contains(float mx, float my) {
+    if (mx >= x - width/2 && mx <= x + width/2 && my <= y + height/2 && my >= y - height/2) {
+        return true;
+    }
     return false;
+}
+
+void Rectangle::setColor(float r, float g, float b) {
+    this->r = r;
+    this->g = g;
+    this->b = b;
 }

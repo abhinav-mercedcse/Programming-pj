@@ -25,7 +25,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->redraw();
     }
     else if (tool == MOUSE) {
-        Shape* selectedShape = canvas->getSelectedShape(mx, my);
+        selectedShape = canvas->getSelectedShape(mx, my);
     }
 
 }
@@ -53,8 +53,20 @@ void Application::onToolbarChange(bobcat::Widget* sender) {
     }
 }
 
+void Application::onColorSelectorChange(bobcat::Widget* sender) {
+    Color color = colorSelector->getColor();
+
+    if (selectedShape) {
+        cout << "Update selected shape color" << endl;
+        selectedShape->setColor(color.getR(), color.getG(), color.getB());
+        canvas->redraw();
+    }
+}
+
 Application::Application() {
     window = new Window(25, 75, 400, 400, "Lecture 21");
+
+    selectedShape = nullptr;
 
     toolbar = new Toolbar(0, 0, 50, 400);
     canvas = new Canvas(50, 0, 350, 350);
@@ -68,6 +80,7 @@ Application::Application() {
     ON_MOUSE_DOWN(canvas, Application::onCanvasMouseDown);
     ON_DRAG(canvas, Application::onCanvasDrag);
     ON_CHANGE(toolbar, Application::onToolbarChange);
+    ON_CHANGE(colorSelector, Application::onColorSelectorChange);
 
     window->show();
 }
