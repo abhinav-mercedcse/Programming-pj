@@ -17,22 +17,16 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->redraw();
     }
     else if (tool == RECTANGLE) {
-        canvas->addRectangle(mx, my, 0.2, 0.2, color.getR(), color.getG(), color.getB());
+        canvas->addRectangle(mx, my, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
-    else if (tool == TRIANGLE) {
-        canvas->addTriangle(mx, my, 0.2, 0.2, color.getR(), color.getG(), color.getB());
+    else if (tool == CIRCLE) { 
+        canvas->addCircle(mx, my, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
-    else if (tool == CIRCLE) {
-        canvas->addCircle(mx, my, 0.2, color.getR(), color.getG(), color.getB());
-        canvas->redraw();
+    else if (tool == MOUSE) {
+        Shape* selectedShape = canvas->getSelectedShape(mx, my);
     }
-    else if (tool == POLYGON) {
-        canvas->addPolygon(mx, my, 5, 0.1, color.getR(), color.getG(), color.getB());
-        canvas->redraw();
-    }
-
 
 }
 
@@ -60,9 +54,9 @@ void Application::onToolbarChange(bobcat::Widget* sender) {
 }
 
 Application::Application() {
-    window = new Window(25, 75, 400, 400, "Lecture 11");
+    window = new Window(25, 75, 400, 400, "Lecture 21");
 
-    toolbar = new Toolbar(0, 0, 50, 350);
+    toolbar = new Toolbar(0, 0, 50, 400);
     canvas = new Canvas(50, 0, 350, 350);
     colorSelector = new ColorSelector(50, 350, 350, 50);
     colorSelector->box(FL_BORDER_BOX);
