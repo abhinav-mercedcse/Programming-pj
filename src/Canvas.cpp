@@ -1,4 +1,5 @@
 #include "Canvas.h"
+#include "Circle.h"
 #include <GL/freeglut.h>
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
@@ -9,20 +10,12 @@ void Canvas::addPoint(float x, float y, float r, float g, float b, int size) {
     points.push_back(new Point(x, y, r, g, b, size));
 }
 
-void Canvas::addRectangle(float x, float y, float width, float height, float r, float g, float b) {
-    rectangles.push_back(new Rectangle(x, y, width, height, r, g, b));
+void Canvas::addRectangle(float x, float y, float r, float g, float b) {
+    shapes.push_back(new Rectangle(x, y, r, g, b));
 }
 
-void Canvas::addTriangle(float x, float y, float width, float height, float r, float g, float b) {
-    triangles.push_back(new Triangle(x, y, width, height, r, g, b));
-}
-
-void Canvas::addCircle(float x, float y, float radius, float r, float g, float b) {
-    circles.push_back(new Circle(x, y, radius, r, g, b));
-}
-
-void Canvas::addPolygon(float x, float y, int sides, float length, float r, float g, float b) {
-    polygons.push_back(new Polygon(x, y, sides, length, r, g, b));
+void Canvas::addCircle(float x, float y, float r, float g, float b) {
+    shapes.push_back(new Circle(x, y, r, g, b));
 }
 
 void Canvas::clear() {
@@ -31,25 +24,10 @@ void Canvas::clear() {
     }
     points.clear();
 
-    for (unsigned int i = 0 ; i < rectangles.size(); i++) {
-        delete rectangles[i];
+    for (unsigned int i = 0 ; i < shapes.size(); i++) {
+        delete shapes[i];
     }
-    rectangles.clear();
-
-    for (unsigned int i = 0 ; i < triangles.size(); i++) {
-        delete triangles[i];
-    }
-    triangles.clear();
-
-    for (unsigned int i = 0 ; i < circles.size(); i++) {
-        delete circles[i];
-    }
-    circles.clear();
-    
-    for (unsigned int i = 0 ; i < polygons.size(); i++) {
-        delete polygons[i];
-    }
-    polygons.clear();
+    shapes.clear();
 }
 
 void Canvas::render() {
@@ -57,19 +35,26 @@ void Canvas::render() {
         points[i]->draw();
     }
 
-    for (unsigned int i = 0 ; i < rectangles.size(); i++) {
-        rectangles[i]->draw();
+    for (unsigned int i = 0 ; i < shapes.size(); i++) {
+        shapes[i]->draw();
+    }
+}
+
+Shape* Canvas::getSelectedShape(float mx, float my) {
+    Shape* selectedShape = nullptr;
+
+    for (unsigned int i = 0; i < shapes.size(); i++) {
+        // ask every shape if we clicked on it
+        if (shapes[i]->contains(mx, my)) {
+            std::cout << "Clicked on shape[" << i << "]" << std::endl;
+            selectedShape = shapes[i];
+            break;
+        }
     }
 
-    for (unsigned int i = 0 ; i < triangles.size(); i++) {
-        triangles[i]->draw();
+    if (selectedShape == nullptr) {
+        std::cout << "No selected shape" << std::endl;
     }
 
-    for (unsigned int i = 0 ; i < circles.size(); i++) {
-        circles[i]->draw();
-    }
-
-    for (unsigned int i = 0 ; i < polygons.size(); i++) {
-        polygons[i]->draw();
-    }
+    return selectedShape;
 }
