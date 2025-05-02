@@ -29,7 +29,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->redraw();
     }
     else if (tool == POLYGON) {
-        canvas->addPolygon(mx, my, 6, 0.1, color.getR(), color.getG(), color.getB());
+        canvas->addPolygon(mx, my, 5, 0.1, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
 
