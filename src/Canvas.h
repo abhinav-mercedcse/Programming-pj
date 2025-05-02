@@ -7,6 +7,7 @@
 #include "Rectangle.h"
 #include "Triangle.h"
 #include "Circle.h"
+#include "Polygon.h"
 
 class Canvas : public bobcat::Canvas_ {
     std::vector<Point*> points;

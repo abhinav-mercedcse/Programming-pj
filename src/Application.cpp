@@ -25,7 +25,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->redraw();
     }
     else if (tool == CIRCLE) {
-        canvas->addCircle(mx, my, 0.2, 0.2, color.getR(), color.getG(), color.getB());
+        canvas->addCircle(mx, my, 0.2, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
     else if (tool == POLYGON) {

@@ -1,4 +1,5 @@
 #include "Canvas.h"
+#include "Polygon.h"
 #include "Triangle.h"
 #include <GL/freeglut.h>
 
@@ -33,6 +34,16 @@ void Canvas::clear() {
         delete triangles[i];
     }
     triangles.clear();
+
+    for (unsigned int i = 0 ; i < circles.size(); i++) {
+        delete circles[i];
+    }
+    circles.clear();
+    
+    for (unsigned int i = 0 ; i < polygons.size(); i++) {
+        delete polygons[i];
+    }
+    polygons.clear();
 }
 
 void Canvas::render() {
@@ -46,5 +57,13 @@ void Canvas::render() {
 
     for (unsigned int i = 0 ; i < triangles.size(); i++) {
         triangles[i]->draw();
+    }
+
+    for (unsigned int i = 0 ; i < circles.size(); i++) {
+        circles[i]->draw();
+    }
+
+    for (unsigned int i = 0 ; i < polygons.size(); i++) {
+        polygons[i]->draw();
     }
 }
