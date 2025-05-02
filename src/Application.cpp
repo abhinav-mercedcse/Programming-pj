@@ -16,6 +16,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->redraw();
     }
     else if (tool == ERASER) {
+        canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 7);
         canvas->redraw();
     }
     else if (tool == RECTANGLE) {
