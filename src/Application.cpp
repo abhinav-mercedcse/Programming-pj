@@ -24,8 +24,21 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->addCircle(mx, my, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
+    else if (tool == TRIANGLE) { 
+        canvas->addTriangle(mx, my, color.getR(), color.getG(), color.getB());
+        canvas->redraw();
+    }
+    else if (tool == POLYGON) { 
+        canvas->addPolygon(mx, my, color.getR(), color.getG(), color.getB());
+        canvas->redraw();
+    }
     else if (tool == MOUSE) {
         selectedShape = canvas->getSelectedShape(mx, my);
+        if (selectedShape){
+            dragging = true;
+            dragX = mx - selectedShape->getX();
+            dragY = my - selectedShape->getY();
+        }
     }
 
 }
@@ -33,7 +46,11 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
 void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
     TOOL tool = toolbar->getTool();
     Color color = colorSelector->getColor();
-
+    
+    if (tool == MOUSE && dragging && selectedShape) {
+        selectedShape->setPosition(mx - dragX, my - dragY);
+        canvas->redraw();
+    }
     if (tool == PENCIL) {
         canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);
         canvas->redraw();
@@ -42,6 +59,7 @@ void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
         canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
         canvas->redraw();
     }
+
 }
 
 void Application::onToolbarChange(bobcat::Widget* sender) {
@@ -64,7 +82,7 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
 }
 
 Application::Application() {
-    window = new Window(25, 75, 400, 400, "Lecture 21");
+    window = new Window(25, 75, 400, 400, "Programming Project");
 
     selectedShape = nullptr;
 

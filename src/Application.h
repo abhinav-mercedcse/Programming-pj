@@ -12,6 +12,9 @@ class Application : public bobcat::Application_ {
     Canvas* canvas;
     ColorSelector* colorSelector;
     Shape* selectedShape;
+    bool dragging = false;
+    float dragX = 0;
+    float dragY = 0;
 
     void onCanvasMouseDown(bobcat::Widget* sender, float mx, float my);
     void onCanvasDrag(bobcat::Widget* sender, float mx, float my);
@@ -23,6 +26,5 @@ public:
 
     friend struct::AppTest;
 };
-
 
 #endif

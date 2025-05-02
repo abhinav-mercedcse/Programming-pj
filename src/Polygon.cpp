@@ -1,5 +1,7 @@
 #include "Polygon.h"
+#include "Triangle.h"
 #include <GL/freeglut.h>
+#include <GL/gl.h>
 #include <cmath>
 
 Polygon::Polygon() {
@@ -12,11 +14,11 @@ Polygon::Polygon() {
     b = 0.0;
 }
 
-Polygon::Polygon(float x, float y, int sides, float length, float r, float g, float b) {
+Polygon::Polygon(float x, float y, float r, float g, float b) {
     this->x = x;
     this->y = y;
-    this->sides = sides;
-    this->length = length;
+    sides = 5;
+    length = 0.1;
     this->r = r;
     this->g = g;
     this->b = b;
@@ -31,4 +33,30 @@ void Polygon::draw() {
             glVertex2f(x + length * cos(theta), y + length * sin(theta));
         }
     glEnd();
+}
+
+bool Polygon::contains(float mx, float my) {
+    if (mx >= x - length/2 && mx <= x + length/2 && my <= y + length/2 && my >= y - length/2) {
+        return true;
+    }
+    return false;
+}
+
+void Polygon::setColor(float r, float g, float b) {
+    this->r = r;
+    this->g = g;
+    this->b = b;
+}
+
+void Polygon::setPosition(float newX, float newY) {
+    x = newX;
+    y = newY;
+}
+
+float Polygon::getX() const { 
+    return x; 
+}
+
+float Polygon::getY() const { 
+    return y; 
 }

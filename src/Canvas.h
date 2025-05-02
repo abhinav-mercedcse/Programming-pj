@@ -11,6 +11,10 @@
 class Canvas : public bobcat::Canvas_ {
     std::vector<Point*> points;
     std::vector<Shape*> shapes;
+    Shape* draggedShape;
+    float dragX = 0;
+    float dragY = 0;
+
 
 public:
     Canvas(int x, int y, int w, int h);
@@ -20,6 +24,10 @@ public:
     void addRectangle(float x, float y, float r, float g, float b);
 
     void addCircle(float x, float y, float r, float g, float b);
+
+    void addTriangle(float x, float y, float r, float g, float b);
+
+    void addPolygon(float x, float y, float r, float g, float b);
 
     void clear();
 

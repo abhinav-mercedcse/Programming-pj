@@ -1,4 +1,6 @@
 #include "Circle.h"
+#include "Polygon.h"
+#include "Triangle.h"
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <cmath>
@@ -33,9 +35,25 @@ void Circle::draw() {
 }
 
 bool Circle::contains(float mx, float my) {
+    if (mx >= x - radius/2 && mx <= x + radius/2 && my <= y + radius/2 && my >= y - radius/2) {
+        return true;
+    }
     return false;
 }
 
 void Circle::setColor(float r, float g, float b) {
     //
+}
+
+void Circle::setPosition(float newX, float newY) {
+    x = newX;
+    y = newY;
+}
+
+float Circle::getX() const { 
+    return x; 
+}
+
+float Circle::getY() const { 
+    return y; 
 }

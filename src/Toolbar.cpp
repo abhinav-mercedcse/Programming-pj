@@ -8,6 +8,7 @@ void Toolbar::deselectAllTools() {
     triangleButton->color(FL_BACKGROUND_COLOR);
     rectangleButton->color(FL_BACKGROUND_COLOR);
     polygonButton->color(FL_BACKGROUND_COLOR);
+    mouseButton->color(FL_BACKGROUND_COLOR);
 }
 
 void Toolbar::visualizeSelectedTool() {
@@ -28,6 +29,9 @@ void Toolbar::visualizeSelectedTool() {
     }
     else if (tool == POLYGON) {
         polygonButton->color(FL_WHITE);
+    }
+    else if (tool == MOUSE) {
+        mouseButton->color(FL_WHITE);
     }
 }
 
@@ -57,6 +61,9 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == clearButton) {
         action = CLEAR;
     }
+    else if (sender == mouseButton) {
+        tool = MOUSE;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -82,6 +89,7 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     rectangleButton = new Image(x, y + 200, 50, 50, "./assets/rectangle.png");
     polygonButton = new Image(x, y + 250, 50, 50, "./assets/polygon.png");
     clearButton = new Image(x, y + 300, 50, 50, "./assets/clear.png");
+    mouseButton = new Image(x, y + 350, 50, 50, "./assets/mouse.png");
 
     tool = PENCIL;
     action = NONE;
@@ -93,6 +101,7 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     rectangleButton->box(FL_BORDER_BOX);
     polygonButton->box(FL_BORDER_BOX);
     clearButton->box(FL_BORDER_BOX);
+    mouseButton->box(FL_BORDER_BOX);
 
     visualizeSelectedTool();
 
@@ -103,4 +112,5 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(rectangleButton, Toolbar::onClick);
     ON_CLICK(polygonButton, Toolbar::onClick);
     ON_CLICK(clearButton, Toolbar::onClick);
+    ON_CLICK(mouseButton, Toolbar::onClick);
 }
