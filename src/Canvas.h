@@ -6,6 +6,7 @@
 #include "Point.h"
 #include "Rectangle.h"
 #include "Circle.h"
+#include "Scribble.h"
 #include "Shape.h"
 
 class Canvas : public bobcat::Canvas_ {
@@ -14,6 +15,7 @@ class Canvas : public bobcat::Canvas_ {
     Shape* draggedShape;
     float dragX = 0;
     float dragY = 0;
+    Scribble* currentScribble = nullptr;
 
 
 public:
@@ -28,6 +30,12 @@ public:
     void addTriangle(float x, float y, float r, float g, float b);
 
     void addPolygon(float x, float y, float r, float g, float b);
+
+    void addScribble(float x, float y);
+
+    void startScribble(float r, float g, float b);
+
+    void handleEraserClick(float x, float y);
 
     void clear();
 

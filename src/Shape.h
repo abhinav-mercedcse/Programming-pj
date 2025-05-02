@@ -9,6 +9,8 @@ class Shape{
 
 public:
     // This function is now pure virtual
+    float x,y,r,g,b;
+    
     virtual void draw() = 0;
 
     virtual bool contains(float mx, float my) = 0;

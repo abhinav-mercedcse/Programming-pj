@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Enums.h"
 #include "Point.h"
+#include "Canvas.h"
 
 using namespace bobcat;
 using namespace std;
@@ -10,11 +11,11 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
     Color color = colorSelector->getColor();
 
     if (tool == PENCIL) {
-        canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);
+        canvas->startScribble(color.getR(), color.getB(), color.getG());
+        canvas->addScribble(mx, my);
         canvas->redraw();
     }
     else if (tool == ERASER) {
-        canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
         canvas->redraw();
     }
     else if (tool == RECTANGLE) {
@@ -53,11 +54,11 @@ void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
         canvas->redraw();
     }
     if (tool == PENCIL) {
-        canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);
+        canvas->addScribble(mx, my);
         canvas->redraw();
     }
     else if (tool == ERASER) {
-        canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
+        canvas->handleEraserClick(mx, my);
         canvas->redraw();
     }
 

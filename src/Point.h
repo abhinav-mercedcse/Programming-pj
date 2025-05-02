@@ -17,6 +17,9 @@ public:
 
     void draw() const;
 
+    void setX(float newX);
+    void setY(float newY);
+    void setColor(float r, float g, float b);
     float getX() const;
     float getY() const;
     float getR() const;

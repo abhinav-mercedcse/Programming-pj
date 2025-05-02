@@ -1,5 +1,6 @@
 #include "Canvas.h"
 #include "Circle.h"
+#include "Scribble.h"
 #include "Triangle.h"
 #include "Polygon.h"
 #include <GL/freeglut.h>
@@ -8,6 +9,16 @@ Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
     // 
 }
 
+void Canvas::startScribble(float r, float g, float b){
+    currentScribble = new Scribble(r, g, b);
+    shapes.push_back(currentScribble);
+}
+
+void Canvas::addScribble(float x, float y) {
+    if (currentScribble){
+        currentScribble->addPoint(x, y);
+    }
+}
 void Canvas::addPoint(float x, float y, float r, float g, float b, int size) {
     points.push_back(new Point(x, y, r, g, b, size));
 }
@@ -27,6 +38,17 @@ void Canvas::addTriangle(float x, float y, float r, float g, float b) {
 void Canvas::addPolygon(float x, float y, float r, float g, float b) {
     shapes.push_back(new Polygon(x, y, r, g, b));
 }
+
+void Canvas::handleEraserClick(float mx, float my) {
+    for (size_t i = 0; i < shapes.size(); ++i) {
+        if (shapes[i]->contains(mx, my)) {
+            delete shapes[i];
+            shapes.erase(shapes.begin() + i);
+            break;
+        }
+    }
+}
+
 
 void Canvas::clear() {
     for (unsigned int i = 0 ; i < points.size(); i++) {
