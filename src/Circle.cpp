@@ -24,8 +24,8 @@ Circle::Circle(float x, float y, float r, float g, float b) {
 void Circle::draw() {
     glColor3f(r, g, b);
 
-    float inc = M_PI / 32;
     glBegin(GL_POLYGON);
+        float inc = M_PI / 32;
         for (float theta = 0; theta <= 2 * M_PI; theta += inc){
             glVertex2d(x + cos(theta) * radius, y + sin(theta) * radius);
         }
