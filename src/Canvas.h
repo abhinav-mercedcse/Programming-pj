@@ -22,7 +22,7 @@ public:
     void addTriangle(float x, float y, float base, float height, float r, float g, float b);
 
     void clear();
-
+    //LALALALALALALALALLAALLALAL
     void render();
 };
 
