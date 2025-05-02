@@ -1,7 +1,4 @@
 #include "Canvas.h"
-#include "Circle.h"
-#include "Polygon.h"
-#include "Triangle.h"
 #include <GL/freeglut.h>
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
