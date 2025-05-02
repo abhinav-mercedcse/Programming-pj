@@ -29,7 +29,7 @@ public:
     void addPolygon(float x, float y, int sides, float length, float r, float g, float b);
 
     void clear();
-
+    //LALALALALALALALALLAALLALAL
     void render();
 };
 
