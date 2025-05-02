@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Enums.h"
+#include "Point.h"
 
 using namespace bobcat;
 using namespace std;
