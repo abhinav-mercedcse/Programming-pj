@@ -26,7 +26,7 @@ bool Scribble::contains(float x, float y) {
     for (std::size_t i = 0; i < points.size(); i++) {
         float dx = points[i].getX() - x;
         float dy = points[i].getY() - y;
-        if (std::sqrt(dx * dx + dy * dy) < 1.0) {
+        if (std::sqrt(dx * dx + dy * dy) < 0.1) {
             return true;
         }
     }

@@ -4,8 +4,8 @@
 Triangle::Triangle() {
     x = 0.0;
     y = 0.0;
-    base = 0.4;
-    height = 0.4;
+    base = 0.2;
+    height = 0.2;
     r = 0.0;
     g = 0.0;
     b = 0.0;
@@ -14,8 +14,8 @@ Triangle::Triangle() {
 Triangle::Triangle(float x, float y,  float r, float g, float b) {
     this->x = x;
     this->y = y;
-    base = 0.4;
-    height = 0.4;
+    base = 0.2;
+    height = 0.2;
     this->r = r;
     this->g = g;
     this->b = b;

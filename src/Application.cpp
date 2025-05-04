@@ -11,7 +11,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
     Color color = colorSelector->getColor();
 
     if (tool == PENCIL) {
-        canvas->startScribble(color.getR(), color.getB(), color.getG());
+        canvas->startScribble(color.getR(), color.getG(), color.getB());
         canvas->addScribble(mx, my);
         canvas->redraw();
     }
@@ -67,11 +67,17 @@ void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
 
 void Application::onToolbarChange(bobcat::Widget* sender) {
     ACTION action = toolbar->getAction();
+    TOOL tool = toolbar->getTool();
 
     if (action == CLEAR) {
         canvas->clear();
         canvas->redraw();
     }
+
+    if (tool != MOUSE) {
+        selectedShape = nullptr;
+    }
+    
 }
 
 void Application::onColorSelectorChange(bobcat::Widget* sender) {

@@ -36,7 +36,7 @@ void Polygon::draw() {
 }
 
 bool Polygon::contains(float mx, float my) {
-    if (mx >= x - length/2 && mx <= x + length/2 && my <= y + length/2 && my >= y - length/2) {
+    if (mx >= x - (length*2)/2 && mx <= x + (length*2)/2 && my <= y + (length*2)/2 && my >= y - (length*2)/2) {
         return true;
     }
     return false;
