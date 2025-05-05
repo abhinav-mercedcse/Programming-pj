@@ -49,7 +49,6 @@ void Canvas::handleEraserClick(float mx, float my) {
     }
 }
 
-
 void Canvas::clear() {
     for (unsigned int i = 0 ; i < points.size(); i++) {
         delete points[i];
@@ -88,5 +87,27 @@ Shape* Canvas::getSelectedShape(float mx, float my) {
     }
 
     return selectedShape;
+}
+
+void Canvas::bringToFront(Shape* shape){
+    for (int i = 0; i < shapes.size(); i++){
+        if (shapes[i] == shape){
+            Shape* currentShape = shapes[i];
+            shapes.erase(shapes.begin()+i);
+            shapes.push_back(currentShape);
+            break;
+        }
+    }
+}
+
+void Canvas::bringToBack(Shape*shape){
+    for (int i = 0; i < shapes.size(); i++){
+        if (shapes[i] == shape){
+            Shape* currentShape = shapes[i];
+            shapes.erase(shapes.begin()+i);
+            shapes.insert(shapes.begin(), currentShape);
+            break;
+        }
+    }
 }
 

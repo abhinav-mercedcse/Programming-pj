@@ -37,6 +37,10 @@ public:
 
     void handleEraserClick(float x, float y);
 
+    void bringToFront(Shape* shape);
+
+    void bringToBack(Shape*shape);
+
     void clear();
 
     void render();

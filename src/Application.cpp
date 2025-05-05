@@ -73,6 +73,14 @@ void Application::onToolbarChange(bobcat::Widget* sender) {
         canvas->clear();
         canvas->redraw();
     }
+    else if (action == FRONT){
+        canvas->bringToFront(selectedShape);
+        canvas->redraw();
+    }
+    else if (action == BACK){
+        canvas->bringToBack(selectedShape);
+        canvas->redraw();
+    }
 
     if (tool != MOUSE) {
         selectedShape = nullptr;
