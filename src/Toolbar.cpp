@@ -1,3 +1,4 @@
+
 #include "Toolbar.h"
 using namespace bobcat;
 
@@ -64,6 +65,18 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == mouseButton) {
         tool = MOUSE;
     }
+    else if (sender == frontButton) {
+        action = FRONT;
+    }
+    else if (sender == backButton) {
+        action = BACK;
+    }
+    else if (sender == plusButton) {
+        action = PLUS;
+    }
+    else if (sender == minusButton) {
+        action = MINUS;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -90,6 +103,10 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     polygonButton = new Image(x, y + 250, 50, 50, "./assets/polygon.png");
     clearButton = new Image(x, y + 300, 50, 50, "./assets/clear.png");
     mouseButton = new Image(x, y + 350, 50, 50, "./assets/mouse.png");
+    frontButton = new Image(x, y + 400, 50, 50, "./assets/bring-to-front.png");
+    backButton = new Image(x, y + 450, 50, 50, "./assets/send-to-back.png");
+    plusButton = new Image(x, y + 500, 50, 50, "./assets/plus.png");
+    minusButton = new Image(x, y + 550, 50, 50, "./assets/minus.png");
 
     tool = PENCIL;
     action = NONE;
@@ -102,6 +119,10 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     polygonButton->box(FL_BORDER_BOX);
     clearButton->box(FL_BORDER_BOX);
     mouseButton->box(FL_BORDER_BOX);
+    frontButton->box(FL_BORDER_BOX);
+    backButton->box(FL_BORDER_BOX);
+    plusButton->box(FL_BORDER_BOX);
+    minusButton->box(FL_BORDER_BOX);
 
     visualizeSelectedTool();
 
@@ -113,4 +134,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(polygonButton, Toolbar::onClick);
     ON_CLICK(clearButton, Toolbar::onClick);
     ON_CLICK(mouseButton, Toolbar::onClick);
+    ON_CLICK(frontButton, Toolbar::onClick);
+    ON_CLICK(backButton, Toolbar::onClick);
+    ON_CLICK(plusButton, Toolbar::onClick);
+    ON_CLICK(minusButton, Toolbar::onClick);
 }
