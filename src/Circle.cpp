@@ -59,3 +59,7 @@ float Circle::getX() const {
 float Circle::getY() const { 
     return y; 
 }
+
+void Circle::resize(float size){
+    radius *= size;
+}

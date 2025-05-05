@@ -20,6 +20,7 @@ public:
     void setPosition(float newX, float newY);
     float getX() const; 
     float getY() const;
+    void resize(float size);
 };
 
 #endif

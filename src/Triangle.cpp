@@ -56,3 +56,8 @@ float Triangle::getX() const {
 float Triangle::getY() const { 
     return y; 
 }
+
+void Triangle::resize(float size){
+    base *= size;
+    height *= size;
+}

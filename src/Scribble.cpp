@@ -77,3 +77,6 @@ void Scribble::setPosition(float newX, float newY) {
     move(dx, dy);
 }
 
+void Scribble::resize(float size){
+    //
+}

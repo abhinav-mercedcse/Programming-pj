@@ -57,3 +57,7 @@ float Rectangle::getX() const {
 float Rectangle::getY() const { 
     return y; 
 }
+void Rectangle::resize(float size) {
+    width *= size;
+    height *= size;
+}

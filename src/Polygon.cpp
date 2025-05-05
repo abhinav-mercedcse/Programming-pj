@@ -60,3 +60,7 @@ float Polygon::getX() const {
 float Polygon::getY() const { 
     return y; 
 }
+
+void Polygon::resize(float size){
+    length *= size;
+}

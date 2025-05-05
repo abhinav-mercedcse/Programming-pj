@@ -23,6 +23,8 @@ public:
     
     virtual float getY() const = 0;
 
+    virtual void resize(float size) = 0;
+
     // Since Shape contains at least one pure virtual function
     // Shape is an Abstract Data Type
 

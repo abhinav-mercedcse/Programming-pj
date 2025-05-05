@@ -81,6 +81,14 @@ void Application::onToolbarChange(bobcat::Widget* sender) {
         canvas->bringToBack(selectedShape);
         canvas->redraw();
     }
+    else if (action == PLUS){
+        selectedShape->resize(1.1);
+        canvas->redraw();
+    }
+    else if (action == MINUS){
+        selectedShape->resize(0.9);
+        canvas->redraw();
+    }
 
     if (tool != MOUSE) {
         selectedShape = nullptr;
@@ -99,13 +107,13 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
 }
 
 Application::Application() {
-    window = new Window(25, 75, 400, 400, "Programming Project");
+    window = new Window(25, 75, 600, 600, "Programming Project");
 
     selectedShape = nullptr;
 
-    toolbar = new Toolbar(0, 0, 50, 400);
-    canvas = new Canvas(50, 0, 350, 350);
-    colorSelector = new ColorSelector(50, 350, 350, 50);
+    toolbar = new Toolbar(0, 0, 50, 600);
+    canvas = new Canvas(50, 0, 550, 550);
+    colorSelector = new ColorSelector(50, 550, 550, 50);
     colorSelector->box(FL_BORDER_BOX);
 
     window->add(toolbar);
