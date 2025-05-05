@@ -1,3 +1,4 @@
+
 #ifndef TOOLBAR_H
 #define TOOLBAR_H
 
@@ -13,6 +14,10 @@ class Toolbar : public bobcat::Group {
     bobcat::Image* polygonButton;
     bobcat::Image* clearButton;
     bobcat::Image* mouseButton;
+    bobcat::Image* frontButton;
+    bobcat::Image* backButton;
+    bobcat::Image* minusButton;
+    bobcat::Image* plusButton;
 
     TOOL tool;
     ACTION action;
